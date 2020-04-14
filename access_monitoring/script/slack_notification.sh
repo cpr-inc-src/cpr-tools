@@ -5,6 +5,8 @@
 # 【引数】
 #   -c：sending channel
 #   -m：sending massage
+#   -i：sending icon
+#   -u：sending user name
 #   -h or --help：help
 ##################################
 
@@ -13,10 +15,9 @@
 ##################################
 # デフォルト値
 URL='https://slack.com/api/chat.postMessage'
-#channel="#10_solution"
-TOKEN="xoxp-158553217862-170022896451-1068445004305-2eeef5f30053f2db4241a2c3994c6663"
+TOKEN="認証トークン"
 username="通知bot"
-channel="#test_api_send"
+channel="#10_solution"
 massege="Botからの送信です。"
 
 ##################################
@@ -73,9 +74,3 @@ done
 
 # 問い合わせ
 curl -XPOST "$URL" -d "token=$TOKEN" -d "channel=$channel" -d "text=$massege" -d "username=$username" -d "icon_emoji=$icon_emoji"
-
-# 各種Payload
-echo $channel
-echo $icon_emoji
-echo $username
-echo $massege

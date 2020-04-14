@@ -41,13 +41,12 @@ function access_monitoring () {
 
   # 問い合わせ
   status_code=`curl -LI -m 45 $url -o /dev/null -w '%{http_code}\n' -s`
-#  if [ 200 -ne $status_code ]; then
+  if [ 200 -ne $status_code ]; then
     error_massage=`curl -LI -m 45 $url -sS -o /dev/null 2>&1`
-    echo $error_massage
     massage=`echo "$SEND_MASSAGE_TMPLATE" | sed "s|url|$url|" | sed "s|status_code|$status_code|" | sed "s|error_massage|$error_massage|"`
     $NOTIFICATION_SCRIPT -c $SEND_CHANNEL -u $SEND_USER_NAME -m "$massage" -i $SEND_ICON_NAME
-#    return 2
-#  fi
+    return 2
+  fi
   return 1
 }
 
