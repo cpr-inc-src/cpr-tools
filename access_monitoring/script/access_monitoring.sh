@@ -15,7 +15,7 @@ source $SCRIPT_DIR/../conf/access_monitoring_conf.sh
 ##################################
 # function
 ##################################
-function access_monitoring () {
+access_monitoring () {
 
   # 変数の初期化
   unset url
