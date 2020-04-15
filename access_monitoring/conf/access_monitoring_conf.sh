@@ -14,7 +14,7 @@ INC_URL='https://www.cpr-inc.jp/'
 SOLUTION_URL='https://www.cpr-inc.jp/solution/'
 
 # 通知関連
-SEND_CHANNEL="#10_solution"
+SEND_CHANNEL="#access_monitoring"
 SEND_ICON_NAME=":warning:"
 SEND_USER_NAME="監視bot"
 SEND_MASSAGE_TMPLATE=$(cat <<-EOD
@@ -28,4 +28,5 @@ url
 status_code
 ■エラーメッセージ
 error_massage
-EOD)
+EOD
+)
