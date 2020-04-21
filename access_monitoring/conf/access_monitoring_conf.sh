@@ -10,7 +10,7 @@ NOTIFICATION_SCRIPT=$SCRIPT_DIR/slack_notification.sh
 LOGGER_SCRIPT=$SCRIPT_DIR/logger.sh
 
 # ログ出力先
-TAGET_LOG_FILE=$SCRIPT_DIR/../log/access_monitoring_conf.log
+TAGET_LOG_FILE=$SCRIPT_DIR/../log/access_monitoring.log
 
 # 各種URL
 STDIO_URL='https://cpr-studio.jp/'
@@ -25,7 +25,7 @@ NOTIFICATION_END_OFF_HOUR_TIME=8
 SEND_CHANNEL="#access_monitoring"
 SEND_ICON_NAME=":warning:"
 SEND_USER_NAME="監視bot"
-SEND_MENTION="@監視メンバー"
+SEND_MENTION="<@U500NSCD9>"
 SEND_MASSAGE_TMPLATE=$(cat <<-EOD
 下記サイトがサイトダウンしています。
 状況確認並びに復旧対応をお願い致します。
