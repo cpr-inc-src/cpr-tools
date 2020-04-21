@@ -13,8 +13,7 @@ LOGGER_SCRIPT=$SCRIPT_DIR/logger.sh
 TAGET_LOG_FILE=$SCRIPT_DIR/../log/access_monitoring_conf.log
 
 # 各種URL
-#STDIO_URL='https://transit.yahoo.co.jp/station/rail/92427/?pref=12&done=time'
-STDIO_URL='https://cpr-studi.jp/'
+STDIO_URL='https://cpr-studio.jp/'
 INC_URL='https://www.cpr-inc.jp/'
 SOLUTION_URL='https://www.cpr-inc.jp/solution/'
 
