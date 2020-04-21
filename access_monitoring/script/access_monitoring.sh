@@ -57,7 +57,7 @@ access_monitoring () {
     if [ 200 -ne $status_code ]; then
       error_header=`echo "$retry_result" | sed '$d'`
       error_massage=`echo "$retry_result" | grep -e "curl: ("`
-      logger "error request Info \n $error_header"
+      logger "error response header \n $error_header"
 
       # 深夜〜朝までは通知時にメンションを行わない（深夜開始時刻 > now && now > 朝の終了時刻）
       massage=`echo "$SEND_MASSAGE_TMPLATE" | sed "s|url|$url|" | sed "s|status_code|$status_code|" | sed "s|error_massage|$error_massage|"`
