@@ -15,7 +15,7 @@
 ##################################
 # デフォルト値
 URL='https://slack.com/api/chat.postMessage'
-TOKEN="認証トークン"
+TOKEN="{トークン}"
 username="通知bot"
 channel="#10_solution"
 massege="Botからの送信です。"
