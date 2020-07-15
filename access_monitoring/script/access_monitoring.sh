@@ -75,7 +75,7 @@ access_monitoring () {
       before_hour=`date "+%Y/%m/%d %H" -d '1 hour ago'`
       now_hour=`date "+%Y/%m/%d %H"`
       is_error=`grep -n "error occurred in $1" $TAGET_LOG_FILE | grep -e "$before_hour" -e "$now_hour"`
-      if [[ -z $is_error ]]
+      if [[ -n $is_error ]]; then
         $NOTIFICATION_SCRIPT -c $SEND_CHANNEL -u $SEND_USER_NAME -m "$massage" -i $SEND_ICON_NAME
         return 2
       fi
