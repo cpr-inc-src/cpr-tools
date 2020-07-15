@@ -60,6 +60,7 @@ access_monitoring () {
       error_massage=`echo "$retry_result" | grep -e "curl: ("`
       error_netstat=`netstat -nap|grep 443`
       error_traceroute=`traceroute -p 443 $url`
+      logger "error occurred in $1"
       logger "error response header \n $error_massage\n$error_header"
       logger "netstat \n $error_netstat"
       logger "traceroute \n $error_traceroute"
@@ -69,8 +70,15 @@ access_monitoring () {
       if [[ $NOTIFICATION_START_OFF_HOUR_TIME -gt $NOW_TIME_HOUR ]] && [[ $NOW_TIME_HOUR -gt $NOTIFICATION_END_OFF_HOUR_TIME ]]; then
         massage=`echo -e "$SEND_MENTION \n$SEND_MASSAGE_TMPLATE" | sed "s|url|$url|" | sed "s|status_code|$status_code|" | sed "s|error_massage|$error_massage|"`
       fi
-      $NOTIFICATION_SCRIPT -c $SEND_CHANNEL -u $SEND_USER_NAME -m "$massage" -i $SEND_ICON_NAME
-      return 2
+
+      # 通知条件は当日の1時間前後以内にエラーが発生していた場合に通知を行う。
+      before_hour=`date "+%Y/%m/%d %H" -d '1 hour ago'`
+      now_hour=`date "+%Y/%m/%d %H"`
+      is_error=`grep -n "error occurred in $1" $TAGET_LOG_FILE | grep -e "$before_hour" -e "$now_hour"`
+      if [[ -n $is_error ]]; then
+        $NOTIFICATION_SCRIPT -c $SEND_CHANNEL -u $SEND_USER_NAME -m "$massage" -i $SEND_ICON_NAME
+        return 2
+      fi
     fi
   fi
   return 1
